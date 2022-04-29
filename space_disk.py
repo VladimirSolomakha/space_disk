@@ -34,6 +34,7 @@ def main():
 
 
 if __name__ == '__main__':
+    """main code"""
     cf = configparser.ConfigParser()
     cf.read('disks')
     count_time = int(cf.get('options', 'count_times'))
