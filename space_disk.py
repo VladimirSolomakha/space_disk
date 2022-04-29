@@ -5,7 +5,7 @@ import requests
 import schedule
 import time
 
-HOSt = 'http://192.168.1.112:1024/Shops/hs/Tasks/ExchangeTasks'
+HOST = 'http://192.168.1.112:1024/Shops/hs/Tasks/ExchangeTasks'
 GUID = 'f7a9a358-f00f-41b0-8618-c42ecd1e8c42'
 
 
@@ -18,7 +18,7 @@ def check_disk(disk, size):
     data = {'GUID': GUID,
             'MessageTelegram': message}
     try:
-        requests.post(f"http://{HOSt}/", data)
+        requests.post(f"{HOST}/", data)
     except:
         print(f'error send post request on disk {disk}')
 
