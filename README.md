@@ -6,9 +6,9 @@ make clone in ssh
 ```
 git clone git@github.com:VladimirSolomakha/space_disk.git
 ```
-in file 'disks' define paths to checking
+in file 'disks' define paths and time for checking
 
-if needs, insstall virtual venv
+if needs, install virtual venv
 ```
 apt install python3-venv
 ```
@@ -18,7 +18,7 @@ source venv/bin/acivate
 ```
 for install dependencies execute 
 ```
-pip install -r requirements.txt'
+pip install -r requirements.txt
 ```
 make file '.env' and in this file define 
 ```
