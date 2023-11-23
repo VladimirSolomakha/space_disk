@@ -1,26 +1,19 @@
 #!/usr/bin/env python
 import configparser
 import psutil
-import requests
 import schedule
 import time
 
-HOST = 'http://192.168.1.112:1024/Shops/hs/Tasks/ExchangeTasks'
-GUID = 'f7a9a358-f00f-41b0-8618-c42ecd1e8c42'
+from telegram_message import send_message
 
 
 def check_disk(disk, size):
     free = psutil.disk_usage(disk).free/(1024*1024*1024)
-    message: str = f"{free:.4} Gb free on disk {disk}"
+    message: str = f'{free:.4} Gb free on disk {disk}, but needs {size}'
     #print(message)
     if(free > size):
         return
-    data = {'GUID': GUID,
-            'MessageTelegram': message}
-    try:
-        requests.post(f"{HOST}/", data)
-    except:
-        print(f'error send post request on disk {disk}')
+    send_message(message)
 
 
 def main():
