@@ -1,8 +1,12 @@
 [options]
-count_disks = 1
-count_times = 1
+count_disks = 2
+count_times = 2
 [disk1]
 path = /
 size = 8
+[disk2]
+path = /opt
+size = 8
 [time]
-time1 = 11:30
+time1 = 20:38
+time2 = 10:00

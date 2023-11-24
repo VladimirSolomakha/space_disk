@@ -1,29 +1,24 @@
 #!/usr/bin/env python
-import os
 import asyncio
+import os
 
 import telegram
 from dotenv import load_dotenv
 
 load_dotenv()
-
-
 TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID')
 COMPUTER = os.getenv('COMPUTER')
 
-bot = telegram.Bot(token=TELEGRAM_TOKEN)
 
-
-async def send_message_async(message):
-    """Отправляет сообщение в Telegram чат."""
+async def send_message_async(message)->str:
+    """Sending message in Telegram chat"""
+    bot = telegram.Bot(token=TELEGRAM_TOKEN)
     try:
         await bot.send_message(TELEGRAM_CHAT_ID, f'Computer {COMPUTER} - {message}')
         return 'ok'
-    except telegram.error.Unauthorized:
-        return 'Unauthorized'
     except telegram.error.BadRequest:
-        return 'BadRequest'
+        return 'BadRequest, check TELEGRAM_CHAT_ID'
     except telegram.error.TimedOut:
         return 'TimedOut'
     except telegram.error.NetworkError:
@@ -31,12 +26,16 @@ async def send_message_async(message):
     except telegram.error.ChatMigrated:
         return 'ChatMigrated'
     except telegram.error.TelegramError:
-        return 'TelegramError'
+        return 'TelegramError, check  TELEGRAM_TOKEN'
     except Exception as error:
-        return error
+        return str(error)
 
 
-def send_message(message):
+def send_message(message)->str:
+    if not TELEGRAM_TOKEN:
+        return 'TELEGRAM_TOKEN not define!'
+    if not TELEGRAM_CHAT_ID:
+        return 'TELEGRAM_CHAT_ID no define!'
     return asyncio.run(send_message_async(message))
 
 

@@ -7,16 +7,18 @@ import time
 from telegram_message import send_message
 
 
-def check_disk(disk, size):
+def check_disk(disk, size)->None:
     free = psutil.disk_usage(disk).free/(1024*1024*1024)
     message: str = f'{free:.4} Gb free on disk {disk}, but needs {size}'
     #print(message)
     if(free > size):
         return
-    send_message(message)
+    result = send_message(message)
+    if not result == 'ok':
+        print(f'Error sending message - {result}')
 
 
-def main():
+def main()->None:
     cf = configparser.ConfigParser()
     cf.read('disks')
     count_disks = int(cf.get('options', 'count_disks'))

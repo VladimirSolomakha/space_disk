@@ -12,6 +12,10 @@ if needs, install virtual venv
 ```
 apt install python3-venv
 ```
+creation venv
+```
+python -m venv venv
+```
 run activate venv
 ```
 source venv/bin/acivate
@@ -22,9 +26,9 @@ pip install -r requirements.txt
 ```
 make file '.env' and in this file define 
 ```
-TELEGRAM_TOKEN
-TELEGRAM_CHAT_ID
-COMPUTER
+TELEGRAM_TOKEN = <toke>
+TELEGRAM_CHAT_ID = <chat_id>
+COMPUTER = <computer_description>
 ```
 for execute project
 ```
